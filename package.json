@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "Back-end assignment",
   "main": "index.js",
+  "jest": {
+    "testEnvironment": "node"
+  },
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "test": "npx jest /tests/app_api.test.js"
   },
   "author": "Serhii Sharipov",
   "license": "ISC",
@@ -15,6 +19,8 @@
     "express": "^4.17.3"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15",
+    "supertest": "^6.2.2"
   }
 }
