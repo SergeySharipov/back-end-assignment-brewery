@@ -6,7 +6,8 @@ const status = {
 
 const error = {
   TYPE_OF_BREWERY_INVALID: 'type_of parameter is invalid',
-  NOT_FOUND: 'Not Found'
+  NOT_FOUND: 'Not Found',
+  UNKNOWN_ROUTE: 'Unknown Route'
 }
 
 module.exports = { status, error }

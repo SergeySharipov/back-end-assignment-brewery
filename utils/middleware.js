@@ -1,3 +1,4 @@
+const { status, error } = require('../constants/response.constants')
 const logger = require('./logger')
 
 const requestLogger = (request, response, next) => {
@@ -10,6 +11,11 @@ const requestLogger = (request, response, next) => {
   next()
 }
 
+const unknownRoute = (request, response) => {
+  response.status(status.NOT_FOUND).send({ error: error.UNKNOWN_ROUTE })
+}
+
 module.exports = {
-  requestLogger
+  requestLogger,
+  unknownRoute
 }
