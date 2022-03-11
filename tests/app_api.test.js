@@ -26,3 +26,28 @@ describe('GET /unknown', () => {
       expect(response.body['error']).toBe('Unknown Route')
     })
 })
+
+/*** GET /breweries ***/
+
+describe('GET /breweries?by_type=invalid', () => {
+  let response
+
+  beforeAll(async () => {
+    response = await api.get('/breweries?by_type=invalid')
+  })
+
+  it('should return 400',
+    async () => {
+      expect(response.status).toBe(400)
+    })
+
+  it('should return content-type "application/json"',
+    async () => {
+      expect(response.headers['content-type']).toContain('application/json')
+    })
+
+  it('should return "body.error" is "type_of parameter is invalid"',
+    async () => {
+      expect(response.body['error']).toBe('type_of parameter is invalid')
+    })
+})
