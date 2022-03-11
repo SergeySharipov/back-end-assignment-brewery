@@ -5,6 +5,8 @@ const api = axios.create({
   baseURL: OPEN_BREWERY_DB_API_URL
 })
 
-const getBreweries = async () => api.get('/breweries')
+const getBreweries = async (byCity, byState, byType) => {
+  return api.get('/breweries', { params: { by_city: byCity, by_state: byState, by_type: byType } })
+}
 
 module.exports = { getBreweries }

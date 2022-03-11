@@ -1,16 +1,22 @@
 const openbrewerydbAPI = require('../api/openbrewerydb')
 
-const getBreweriesFromOpenbrewerydbAPI = async () => {
-  const sourceData = await openbrewerydbAPI.getBreweries()
-  const breweries = sourceData.data
+const getBreweriesFromOpenbrewerydbAPI = async (byCity, byState, byType) => {
+  const sourceData = await openbrewerydbAPI.getBreweries(byCity, byState, byType)
 
-  return breweries
+  if (sourceData) {
+    console.log(sourceData.data)
+    const breweries = sourceData.data
+    return breweries
+  } else {
+    return undefined
+  }
 }
 
 const breweriesController = {
   getBreweries: async (req, res) => {
+    const { by_city, by_state, by_type } = req.query
 
-    const breweries = await getBreweriesFromOpenbrewerydbAPI()
+    const breweries = await getBreweriesFromOpenbrewerydbAPI(by_city, by_state, by_type)
 
     res.status(200).json({ data: breweries })
   }
