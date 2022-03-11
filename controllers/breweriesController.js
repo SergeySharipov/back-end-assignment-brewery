@@ -33,7 +33,11 @@ const breweriesController = {
 
     const breweries = await getBreweriesFromOpenbrewerydbAPI(by_city, by_state, by_type)
 
-    res.status(200).json({ data: breweries })
+    if (breweries) {
+      res.status(status.SUCCESS_CODE).json({ data: breweries })
+    } else {
+      res.status(status.NOT_FOUND).json({ error: error.NOT_FOUND })
+    }
   }
 }
 
